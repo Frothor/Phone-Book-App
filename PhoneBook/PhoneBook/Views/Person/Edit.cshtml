@@ -1,0 +1,47 @@
+﻿@model PhoneBook.Models.Person
+<div class="container">
+    <div class="row">
+        <div class="col-8">
+            <h3>Update person</h3>
+            @using (Html.BeginForm("Edit", "Person", new { id = Model.ID }, FormMethod.Post))
+            {
+                <div class="form-group row">
+                    @Html.LabelFor(x => x.ID, new { @class = "col-form-label col-4" })
+                    <div class="col-8">
+                        @Html.TextBoxFor(x => x.ID, new { @class = "form-control", disabled = "" })
+                    </div>
+                </div>
+
+                <div class="form-group row">
+                    @Html.LabelFor(x => x.Firstname, new { @class = "col-form-label col-4" })
+                    <div class="col-8">
+                        @Html.TextBoxFor(x => x.Firstname, new { @class = "form-control" })
+                    </div>
+                </div>
+
+
+                <div class="form-group row">
+                    @Html.LabelFor(x => x.Lastname, new { @class = "col-form-label col-4" })
+                    <div class="col-8">
+                        @Html.TextBoxFor(x => x.Lastname, new { @class = "form-control" })
+                    </div>
+                </div>
+
+                <div class="form-group row">
+                    @Html.LabelFor(x => x.Phone, new { @class = "col-form-label col-4" })
+                    <div class="col-8">
+                        @Html.TextBoxFor(x => x.Phone, new { @class = "form-control" })
+                    </div>
+                </div>
+                <div class="form-group row">
+                    @Html.LabelFor(x => x.Email, new { @class = "col-form-label col-4" })
+                    <div class="col-8">
+                        @Html.TextBoxFor(x => x.Email, new { @class = "form-control" })
+                    </div>
+                </div>
+                <button class="btn btn-success"><i class="fa fa-check"></i> Submit Changes</button>
+            }
+            <a class="btn btn-primary btn-sm" href="@Url.Action("Index")"><i class="fa fa-home"></i> Main Page</a>
+        </div>
+    </div>
+</div>

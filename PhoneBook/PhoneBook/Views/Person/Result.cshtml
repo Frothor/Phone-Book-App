@@ -1,0 +1,48 @@
+﻿@model List<PhoneBook.Models.Person>
+<p>@ViewBag.Message</p>
+<div class="container">
+    <div>
+        <table class="table table-hover">
+            <tr>
+                <th>
+                    First Name
+                </th>
+                <th>
+                    Last Name
+                </th>
+                <th>
+                    Phone Number
+                </th>
+                <th>
+                    Email Address
+                </th>
+                <th>
+                    Options
+                </th>
+            </tr>
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td>
+                        @Html.DisplayFor(x => item.Firstname)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(x => item.Lastname)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(x => item.Phone)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(x => item.Email)
+                    </td>
+                    <td>
+                        <a class="btn btn-info btn-sm" href="@Url.Action("Edit", new { id = item.ID })"><i class="fa fa-edit"></i> Edit</a>
+                        <a class="btn btn-warning btn-sm" href="@Url.Action("Remove", new { id = item.ID })">Remove <i class="fa fa-remove"></i></a>
+                    </td>
+                </tr>
+            }
+        </table>
+        <br />
+        <a class="btn btn-primary btn-sm" href="@Url.Action("Index")"><i class="fa fa-home"></i> Main Page</a>
+    </div>
+</div>

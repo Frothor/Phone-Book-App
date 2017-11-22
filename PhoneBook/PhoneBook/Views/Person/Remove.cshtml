@@ -1,0 +1,42 @@
+﻿@model PhoneBook.Models.Person
+
+<p>@ViewBag.Message</p>
+
+@using (@Html.BeginForm("ConfirmRemove", "Person", new { id = Model.ID }, FormMethod.Post))
+{
+    <table class="table table-hover">
+        <tr>
+            <th>
+                First Name
+            </th>
+            <th>
+                Last Name
+            </th>
+            <th>
+                Phone Number
+            </th>
+            <th>
+                Email Address
+            </th>
+        </tr>
+        <tr>
+            <td>
+                @Html.DisplayFor(x => x.Firstname);
+            </td>
+            <td>
+                @Html.DisplayFor(x => x.Lastname);
+            </td>
+            <td>
+                @Html.DisplayFor(x => x.Phone);
+            </td>
+            <td>
+                @Html.DisplayFor(x => x.Email);
+            </td>
+        </tr>
+    </table>
+
+    <p>Are you sure you want to remove this person?</p>
+    <button class="btn btn-danger">Remove <i class="fa fa-remove"></i></button>
+}
+
+<a class="btn btn-primary btn-sm" href="@Url.Action("Index")"><i class="fa fa-home"></i> Main Page</a>

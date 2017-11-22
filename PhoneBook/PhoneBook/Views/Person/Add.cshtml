@@ -1,0 +1,45 @@
+﻿@model PhoneBook.Models.Person
+
+<div class="container">
+    <div class="row">
+        <div class="col-8">
+            <h3>Fill form to add new person</h3>
+
+            @using (Html.BeginForm("Add", "Person", FormMethod.Post))
+            {
+                <div class="form-group row">
+                    @Html.LabelFor(x => x.Firstname, new { @class = "col-form-label col-4" })
+                    <div class="col-8">
+                        @Html.TextBoxFor(x => x.Firstname, new { @class = "form-control" })
+                    </div>
+                </div>
+
+                <div class="form-group row">
+                    @Html.LabelFor(x => x.Lastname, new { @class = "col-form-label col-4" })
+                    <div class="col-8">
+                        @Html.TextBoxFor(x => x.Lastname, new { @class = "form-control" })
+                    </div>
+                </div>
+
+                <div class="form-group row">
+                    @Html.LabelFor(x => x.Phone, new { @class = "col-form-label col-4" })
+                    <div class="col-8">
+                        @Html.TextBoxFor(x => x.Phone, new { @class = "form-control" })
+                    </div>
+                </div>
+                <div class="form-group row">
+                    @Html.LabelFor(x => x.Email, new { @class = "col-form-label col-4" })
+                    <div class="col-8">
+                        @Html.TextBoxFor(x => x.Email, new { @class = "form-control" })
+                    </div>
+                </div>
+
+                <button class="btn btn-success"><i class="fa fa-plus"></i> Add</button>
+            }
+            @Html.ValidationSummary()
+            <div>
+                <a class="btn btn-primary btn-sm" href="@Url.Action("Index")"><i class="fa fa-home"></i> Main Page</a>
+            </div>
+        </div>
+    </div>
+</div>
