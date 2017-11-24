@@ -96,11 +96,11 @@ namespace PhoneBook.Controllers
             {
                 IEnumerable<Person> people = EFContext.People.Where(x => x.Firstname.Contains(query) ||
                x.Lastname.Contains(query) || x.Phone.Contains(query)).ToList();
-                return View(people);
+                return View("Index",people);
             }
 
-            ViewBag.Message = "No results found.";
-            return View();
+            
+            return View("Index");
         }
 
     }
