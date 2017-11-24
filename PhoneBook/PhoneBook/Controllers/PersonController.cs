@@ -11,16 +11,16 @@ namespace PhoneBook.Controllers
     public class PersonController : Controller
     {
 
-        public EFContext EFContext { get; }
+        protected EFContext EFContext { get; }
 
         public PersonController(EFContext eFContext)
         {
             EFContext = eFContext;
         }
 
-        public IActionResult Index(EFContext context)
+        public IActionResult Index()
         {
-            IEnumerable<Person> people = context.People.ToList();
+            IEnumerable<Person> people = EFContext.People.ToList();
             return View(people);
         }
 
@@ -31,13 +31,13 @@ namespace PhoneBook.Controllers
         }
 
         [HttpPost]
-        public IActionResult Add(Person person, [FromServices] EFContext context)
+        public IActionResult Add(Person person)
         {
             if (ModelState.IsValid)
             {
                 person.Created = DateTime.Now;
-                context.People.Add(person);
-                context.SaveChanges();
+                EFContext.People.Add(person);
+                EFContext.SaveChanges();
 
                 return RedirectToAction("Index");
             }
@@ -50,53 +50,51 @@ namespace PhoneBook.Controllers
         }
 
         [HttpGet]
-        public IActionResult Edit(int id, [FromServices] EFContext context)
+        public IActionResult Edit(int id)
 
         {
-            var person = context.People.Single(x => x.ID == id);
-            context.SaveChanges();
+            var person = EFContext.People.Single(x => x.ID == id);
             return View(person);
 
         }
 
 
         [HttpPost]
-        public IActionResult Edit(Person person, [FromServices] EFContext context)
+        public IActionResult Edit(Person person)
 
         {
             if (ModelState.IsValid)
             {
                 person.Updated = DateTime.Now;
-                context.Update(person);
-                context.SaveChanges();
+                EFContext.People.Update(person);
+                EFContext.SaveChanges();
                 return RedirectToAction("Index");
             }
             return View(person);
         }
 
         [HttpGet]
-        public IActionResult Remove(int id, [FromServices] EFContext context)
+        public IActionResult Remove(int id)
         {
-            var person = context.People.Single(x => x.ID == id);
-            context.SaveChanges();
+            var person = EFContext.People.Single(x => x.ID == id);
             return View(person);
         }
 
         [HttpPost]
-        public IActionResult ConfirmRemove(int id, [FromServices] EFContext context)
+        public IActionResult ConfirmRemove(int id)
         {
-            var person = context.People.Single(x => x.ID == id);
-            context.Remove(person);
-            context.SaveChanges();
+            var person = EFContext.People.Single(x => x.ID == id);
+            EFContext.Remove(person);
+            EFContext.SaveChanges();
             return RedirectToAction("Index");
         }
 
         [HttpGet]
-        public IActionResult Result(string query, [FromServices] EFContext context)
+        public IActionResult Result(string query)
         {
             if (!String.IsNullOrWhiteSpace(query))
             {
-                IEnumerable<Person> people = context.People.Where(x => x.Firstname.Contains(query) ||
+                IEnumerable<Person> people = EFContext.People.Where(x => x.Firstname.Contains(query) ||
                x.Lastname.Contains(query) || x.Phone.Contains(query)).ToList();
                 return View(people);
             }

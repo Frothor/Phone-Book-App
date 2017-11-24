@@ -1,9 +1,9 @@
-# WAR_NET_S_01_Warsztaty_3
-Aplikacja na trzecie warsztaty
+# PhoneBook
+3rd project PhoneBook app:
 
-Nie wiem czemu edycja nie działała dopóki nie wstrzyknąłem kontekstu w metodę
-(wywalał błąd, że obiekt o podanym id jest już w użyciu)
+- You can add, edit and remove people. 
+- You can also search for people by First Name, Last Name and Phone Number.
+- This app wont't work if you don't start up MS SQL Server with proper connection string.
 
-Nie umiem wyświetlać wyników z szukania w indexie
 
-Nie ma paginacji
+
